@@ -36,7 +36,7 @@ def fit_classifier():
         x_test = x_test.reshape((x_test.shape[0],x_test.shape[1],1))
 
     input_shape = x_train.shape[1:]
-    classifier = create_classifier(classifier_name,input_shape, nb_classes, output_directory)
+    classifier = create_classifier(classifier_name,input_shape, nb_classes, output_directory, verbose=True)
 
     classifier.fit(x_train,y_train,x_test,y_test, y_true)
 
@@ -71,9 +71,12 @@ def create_classifier(classifier_name, input_shape, nb_classes, output_directory
 
 ############################################### main 
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "4"
 # change this directory for your machine
 # it should contain the archive folder containing both univariate and multivariate archives
-root_dir = '/mnt/nfs/casimir/'
+# root_dir = '/mnt/nfs/casimir/'
+root_dir = '/data3/zyx/project/tsc/data'
 
 if sys.argv[1]=='transform_mts_to_ucr_format':
     transform_mts_to_ucr_format()
