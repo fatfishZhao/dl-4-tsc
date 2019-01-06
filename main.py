@@ -6,6 +6,14 @@ from utils.utils import transform_mts_to_ucr_format
 from utils.utils import visualize_filter
 from utils.utils import viz_for_survey_paper
 from utils.utils import viz_cam
+# set memory
+import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+# config.gpu_options.per_process_gpu_memory_fraction = 0.3
+config.gpu_options.allow_growth = True
+config.gpu_options.visible_device_list = "4"
+set_session(tf.Session(config=config))
 
 import numpy as np
 import sys
@@ -68,11 +76,17 @@ def create_classifier(classifier_name, input_shape, nb_classes, output_directory
     if classifier_name=='cnn': # Time-CNN
         from classifiers import cnn
         return cnn.Classifier_CNN(output_directory,input_shape, nb_classes, verbose)
+    if classifier_name=='deep_resnet': # deep-Resnet
+        from classifiers import deep_resnet
+        return deep_resnet.Classifier_DEEP_RESNET(output_directory,input_shape, nb_classes, verbose)
+    if classifier_name == 'deep_fcn':  # Deep-FCN
+        from classifiers import deep_fcn
+        return deep_fcn.Classifier_DEEP_FCN(output_directory, input_shape, nb_classes, verbose)
 
 ############################################### main 
 
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "4"
+# os.environ["CUDA_VISIBLE_DEVICES"] = "4"
 # change this directory for your machine
 # it should contain the archive folder containing both univariate and multivariate archives
 # root_dir = '/mnt/nfs/casimir/'

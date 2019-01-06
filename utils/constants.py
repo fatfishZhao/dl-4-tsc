@@ -15,7 +15,7 @@ ITERATIONS = 1 # nb of random runs for random initializations
 
 ARCHIVE_NAMES = ['UCR_TS_Archive_2015','mts_archive']
 
-CLASSIFIERS = ['fcn','mlp','resnet','tlenet','mcnn','twiesn','encoder','mcdcnn','cnn']
+CLASSIFIERS = ['fcn','mlp','resnet','tlenet','mcnn','twiesn','encoder','mcdcnn','cnn', 'deep_resnet', 'deep_fcn']
 
 dataset_types = {'ElectricDevices':'DEVICE','FordB':'SENSOR',
 'FordA':'SENSOR','NonInvasiveFatalECG_Thorax2':'ECG',
