@@ -31,7 +31,7 @@ class Classifier_DEEP_RESNET:
 
         # BLOCK 1
 
-        conv_x = keras.layers.Conv1D(filters=n_feature_maps, kernel_size=8, padding='same')(input_layer)
+        conv_x = keras.layers.Conv1D(filters=n_feature_maps, kernel_size=8, padding='same', strides=2)(input_layer)
         conv_x = keras.layers.normalization.BatchNormalization()(conv_x)
         conv_x = keras.layers.Activation('relu')(conv_x)
 
@@ -43,7 +43,7 @@ class Classifier_DEEP_RESNET:
         conv_z = keras.layers.normalization.BatchNormalization()(conv_z)
 
         # expand channels for the sum
-        shortcut_y = keras.layers.Conv1D(filters=n_feature_maps, kernel_size=1, padding='same')(input_layer)
+        shortcut_y = keras.layers.Conv1D(filters=n_feature_maps, kernel_size=2, padding='same', strides=2)(input_layer)
         shortcut_y = keras.layers.normalization.BatchNormalization()(shortcut_y)
 
         output_block_1 = keras.layers.add([shortcut_y, conv_z])

@@ -111,8 +111,8 @@ class Classifier_RESNET:
 	def fit(self, x_train, y_train, x_val, y_val,y_true): 
 		# x_val and y_val are only used to monitor the test loss and NOT for training  
 		batch_size = 16
-		nb_epochs = 1500
-
+		# nb_epochs = 1500
+		nb_epochs = 50
 		mini_batch_size = int(min(x_train.shape[0]/10, batch_size))
 
 		start_time = time.time() 

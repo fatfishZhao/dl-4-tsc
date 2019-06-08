@@ -32,7 +32,7 @@ def readucr(filename):
     return X, Y
 
 def create_directory(directory_path): 
-    if os.path.exists(directory_path): 
+    if os.path.exists(directory_path):
         return None
     else: 
         try: 

@@ -12,7 +12,7 @@ from keras.backend.tensorflow_backend import set_session
 config = tf.ConfigProto()
 # config.gpu_options.per_process_gpu_memory_fraction = 0.3
 config.gpu_options.allow_growth = True
-config.gpu_options.visible_device_list = "4"
+config.gpu_options.visible_device_list = "7"
 set_session(tf.Session(config=config))
 
 import numpy as np
@@ -82,6 +82,9 @@ def create_classifier(classifier_name, input_shape, nb_classes, output_directory
     if classifier_name == 'deep_fcn':  # Deep-FCN
         from classifiers import deep_fcn
         return deep_fcn.Classifier_DEEP_FCN(output_directory, input_shape, nb_classes, verbose)
+    if classifier_name == 'resnet_torch':
+        from classifiers import resnet_torch
+        return  resnet_torch.Classifier_Resnet_torch(output_directory, input_shape, nb_classes, verbose)
 
 ############################################### main 
 
@@ -106,7 +109,7 @@ elif sys.argv[1]=='generate_results_csv':
 else:
     # this is the code used to launch an experiment on a dataset
     archive_name = sys.argv[1]
-    dataset_name = sys.argv[2]
+    dataset_name = sys.argv[2]; print(dataset_name)
     classifier_name=sys.argv[3]
     itr = sys.argv[4]
 
