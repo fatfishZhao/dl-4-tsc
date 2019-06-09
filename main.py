@@ -9,11 +9,7 @@ from utils.utils import viz_cam
 # set memory
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
-config = tf.ConfigProto()
-# config.gpu_options.per_process_gpu_memory_fraction = 0.3
-config.gpu_options.allow_growth = True
-config.gpu_options.visible_device_list = "7"
-set_session(tf.Session(config=config))
+
 
 import numpy as np
 import sys
@@ -112,6 +108,11 @@ else:
     dataset_name = sys.argv[2]; print(dataset_name)
     classifier_name=sys.argv[3]
     itr = sys.argv[4]
+    config = tf.ConfigProto()
+    # config.gpu_options.per_process_gpu_memory_fraction = 0.3
+    config.gpu_options.allow_growth = True
+    config.gpu_options.visible_device_list = sys.argv[5]
+    set_session(tf.Session(config=config))
 
     if itr == '_itr_0': 
         itr = ''
