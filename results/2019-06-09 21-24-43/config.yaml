@@ -1,0 +1,10 @@
+batch_size: 16
+nb_epoch: 100
+opt:
+  lr: 0.0001
+  momentum: 0.9
+  weight_decay: 0.00001
+lr_scheduler:
+  step_size: 15
+  gamma: 0.3
+

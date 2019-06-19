@@ -3,7 +3,7 @@ import torch
 import numpy as np
 import pandas as pd
 import time
-from torchvision.models import resnet18
+from torchvision.models import resnet18, resnet50
 from utils.train_util import train
 import torch.optim as optim
 from  torch.nn import CrossEntropyLoss
@@ -20,7 +20,7 @@ class Classifier_Resnet_torch:
         self.verbose = verbose
 
     def build_model(self, input_shape, nb_classes):
-        model = resnet18(pretrained=True)
+        model = resnet50(pretrained=False)
         model.avgpool = torch.nn.AdaptiveAvgPool2d(output_size=1)
         model.fc = torch.nn.Linear(model.fc.in_features, nb_classes)
         model.cuda()
@@ -77,7 +77,11 @@ class Classifier_Resnet_torch:
         hist_df = hist_df.iloc[1:,:]
         hist_df.to_csv(self.output_directory+'/hist.csv')
         hist_best = hist_df[hist_df['val_acc']==hist_df['val_acc'].max()]
-        hist_best.to_csv(self.output_directory+'/best_val.csv')
+        hist_best.columns = ['acc','loss','lr','accuracy','val_loss']
+        hist_best.to_csv(self.output_directory+'/df_metrics.csv')
+
+
+
         with open(self.output_directory+'/config.yaml', 'w') as f:
             yaml.dump(config, f)
         import matplotlib.pyplot as plt

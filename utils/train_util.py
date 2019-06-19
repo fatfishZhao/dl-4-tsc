@@ -51,7 +51,8 @@ def train(model,
           exp_lr_scheduler,
           data_set,
           data_loader,
-          save_dir):
+          save_dir,
+          print_num=5):
 
     hist={'loss':[0], 'acc':[0], 'lr':[0], 'val_loss':[0], 'val_acc':[0]}
 
@@ -61,6 +62,7 @@ def train(model,
         model.train(True)  # Set model to training mode
         all_loss = 0
         all_correct=0
+        all_count = 0
 
         for batch_cnt, data in enumerate(data_loader['train']):
 
@@ -82,6 +84,7 @@ def train(model,
             else:
                 loss = criterion(outputs, labels)
 
+            # loss = loss/inputs.shape[0]
             loss.backward()
             optimizer.step()
 
@@ -91,6 +94,22 @@ def train(model,
             batch_corrects = (preds == labels).data.sum()
             all_correct += batch_corrects
             all_loss += loss.data.cpu().numpy()
+            all_count += inputs.shape[0]
+            # if all_count%int(len(data_set['train'])/print_num)==0:
+            #     acc = all_correct.data.cpu().numpy()/(all_count*inputs.shape[0])
+            #     each_train_loss = all_loss / (all_count*inputs.shape[0])
+            #     print('%d epoch going, acc= %.4f, loss= %.4f, lr= %.4f' % (
+            #     epoch, acc, each_train_loss, exp_lr_scheduler.get_lr()[0]))
+            #     val_acc, val_loss = val(model, data_loader, criterion, data_set)
+            #     print('val finished, acc= %.4f, loss= %.4f' % (val_acc, val_loss))
+            #     # save model depend on whether it is the best model
+            #     if val_acc > max(hist['val_acc']):
+            #         torch.save(model.state_dict(), save_dir + 'best_model.pth')
+            #     hist['loss'].append(each_train_loss)
+            #     hist['acc'].append(acc)
+            #     hist['lr'].append(exp_lr_scheduler.get_lr()[0])
+            #     hist['val_loss'].append(val_loss)
+            #     hist['val_acc'].append(val_acc)
 
 
         acc = all_correct.data.cpu().numpy()/len(data_set['train'])

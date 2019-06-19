@@ -2,7 +2,8 @@
 import keras 
 import numpy as np 
 import pandas as pd 
-import time 
+import time
+from sklearn.model_selection import train_test_split
 
 from utils.utils import save_logs
 
@@ -52,7 +53,8 @@ class Classifier_FCN:
 
 		return model 
 
-	def fit(self, x_train, y_train, x_val, y_val,y_true): 
+	def fit(self, x_train, y_train, x_test, y_test,y_true):
+		x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.1, random_state=0, stratify=y_train)
 		# x_val and y_val are only used to monitor the test loss and NOT for training  
 		batch_size = 16
 		nb_epochs = 1000
@@ -68,7 +70,7 @@ class Classifier_FCN:
 
 		model = keras.models.load_model(self.output_directory+'best_model.hdf5')
 
-		y_pred = model.predict(x_val)
+		y_pred = model.predict(x_test)
 
 		# convert the predicted from binary to integer 
 		y_pred = np.argmax(y_pred , axis=1)

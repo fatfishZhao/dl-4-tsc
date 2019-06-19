@@ -81,6 +81,15 @@ def create_classifier(classifier_name, input_shape, nb_classes, output_directory
     if classifier_name == 'resnet_torch':
         from classifiers import resnet_torch
         return  resnet_torch.Classifier_Resnet_torch(output_directory, input_shape, nb_classes, verbose)
+    if classifier_name == 'mobile_torch':
+        from classifiers import mobile_torch
+        return  mobile_torch.Classifier_Resnet_torch(output_directory, input_shape, nb_classes, verbose)
+    if classifier_name =='lstm_fcn':
+        from classifiers import lstm_fcn
+        return lstm_fcn.Classifier_FCN(output_directory, input_shape, nb_classes,dataset_name, verbose)
+    if classifier_name == 'shuffle_torch':
+        from classifiers import shuffle_torch
+        return shuffle_torch.Classifier_Shuffle_torch(output_directory, input_shape, nb_classes, verbose)
 
 ############################################### main 
 
