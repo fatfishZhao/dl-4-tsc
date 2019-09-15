@@ -28,7 +28,9 @@ class Classifier_Shuffle_torch:
         # for key in state.keys():
         #     net_parameters[key].data = state[key].data
         # model.load_state_dict(net_parameters)
+
         model.cuda()
+        # summary(model, (3, 136, 22))
         return model
 
     def fit(self, x_train, y_train, x_val, y_val, y_true):

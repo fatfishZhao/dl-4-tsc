@@ -32,11 +32,12 @@ class dataset(data.Dataset):
 
         data = data[:, :, np.newaxis]
         data = np.concatenate((data, data, data), axis=2)
-        data = data.transpose((2, 0, 1))
+
+        data = cv2.resize(data, (224, 224), interpolation=cv2.INTER_CUBIC)
 
         if self.transforms is not None:
             data = self.transforms(data)
-
+        data = data.transpose((2, 0, 1))
         return torch.from_numpy(data).float(), label
 
 

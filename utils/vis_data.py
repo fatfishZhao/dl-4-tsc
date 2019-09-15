@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-dataset = 'KickvsPunch'
+dataset = 'AUSLAN'
 train_x = np.load('/data3/zyx/project/tsc/data/archives/mts_archive/'+dataset+'/x_train.npy')
 train_y = np.load('/data3/zyx/project/tsc/data/archives/mts_archive/'+dataset+'/y_train.npy')
 unique_y = np.unique(train_y)
@@ -17,6 +17,8 @@ for index, (solo_x, solo_y) in enumerate(zip(train_x, train_y)):
     plt.title(str(solo_y))
     plt.grid(ls='--')
     plt.savefig('./'+dataset+'/'+str(solo_y)+'/'+str(index)+'.jpg')
+    if index>100:
+        break
     # plt.show()
 
 print(train_x)

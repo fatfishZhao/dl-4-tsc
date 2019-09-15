@@ -25,8 +25,8 @@ def process_data(q, gpu_id):
             else:
                 os.system(data+' '+str(gpu_id))
             print ("%s processing %s over" % (str(gpu_id), data))
-start_i = 71
-end_i = 81
+start_i = 131
+end_i = 141
 datasets = ['AUSLAN', 'ArabicDigits', 'CMUsubject16', 'CharacterTrajectories', 'ECG', 'JapaneseVowels','KickvsPunch',
             'Libras', 'NetFlow', 'UWave', 'Wafer', 'WalkvsRun']
 model_name = 'shuffle_torch'

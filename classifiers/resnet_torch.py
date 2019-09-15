@@ -20,7 +20,7 @@ class Classifier_Resnet_torch:
         self.verbose = verbose
 
     def build_model(self, input_shape, nb_classes):
-        model = resnet50(pretrained=False)
+        model = resnet18(pretrained=True)
         model.avgpool = torch.nn.AdaptiveAvgPool2d(output_size=1)
         model.fc = torch.nn.Linear(model.fc.in_features, nb_classes)
         model.cuda()
