@@ -1,5 +1,5 @@
 # This repor is the code for paper "Classify Multivariate Time Series by Deep Neural Network Image Classification", We used image classification method for TSC problem and achieve good result. 
-
+![result figure](https://github.com/fatfishZhao/dl-4-tsc/blob/master/utils/result_table.png)
 ## If you find this repo helpful, please cite:
 
 
