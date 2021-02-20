@@ -1,3 +1,20 @@
+# 
+This repor is the code for paper "Classify Multivariate Time Series by Deep Neural Network Image Classification", We used image classification method for TSC problem and achieve good result. 
+
+If you find this repo helpful, please cite:
+'''
+@inproceedings{zhao2019classify,
+  title={Classify Multivariate Time Series by Deep Neural Network Image Classification},
+  author={Zhao, Yuxuan and Cai, Zhongmin},
+  booktitle={2019 2nd China Symposium on Cognitive Computing and Hybrid Intelligence (CCHI)},
+  pages={93--98},
+  year={2019},
+  organization={IEEE}
+}
+'''
+
+
+# Readme Information from the original repo
 # Deep Learning for Time Series Classification
 This is the companion repository for [our paper](https://arxiv.org/abs/1809.04356) titled "Deep learning for time series classification: a review". 
 
